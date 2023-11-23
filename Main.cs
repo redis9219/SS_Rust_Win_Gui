@@ -1,4 +1,4 @@
-﻿using CliWrap;
+using CliWrap;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -69,16 +69,19 @@ namespace SS_Rust_Win_Gui
 
         private async Task<string[]> getMethodsAsync()
         {
-
             var result = await Cli.Wrap("sslocal.exe").WithArguments("-m").WithValidation(CommandResultValidation.None).ExecuteBufferedAsync();
             string line = result.StandardError;
-           
             Regex rgx = new Regex(@"(?i)(?<=\[)(.*)(?=\])");//中括号[]
             line = rgx.Match(line).Value;//中括号[]
             line = line.Substring(line.IndexOf(":") + 1);
-            return line.Split(',');
+            line = line.Replace(" ", "");
+            var res = line.Split(',');
+            for (int i = 0; i < res.Length; i++)
+            {
+                res[i] = res[i].Trim();
+            }
+            return res;
         }
-
 
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,14 +151,14 @@ namespace SS_Rust_Win_Gui
 
         Process exep = new Process();
 
-        ConfigServer lastStartConfig= new ConfigServer();
+        ConfigServer lastStartConfig = new ConfigServer();
         private void startSocks5Proxy(ConfigServer configServer)
         {
             closeSSLocal();
             lastStartConfig = configServer;
             exep = new Process();
-            exep.StartInfo.UseShellExecute = false; 
-            exep.StartInfo.CreateNoWindow = true; 
+            exep.StartInfo.UseShellExecute = false;
+            exep.StartInfo.CreateNoWindow = true;
             exep.StartInfo.ErrorDialog = false;
             exep.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             exep.StartInfo.FileName = @"sslocal.exe";
@@ -169,9 +172,9 @@ namespace SS_Rust_Win_Gui
         int restartCnt = 0;
         private void SSLocal_Exited(object sender, EventArgs e)
         {
-           
+
             notifyIcon1.ShowBalloonTip(0, "错误", "sslocal 运行停止，请检查配置文件和sslocal！", ToolTipIcon.Error);
-           
+
         }
 
         private void closeSSLocal()
@@ -208,14 +211,14 @@ namespace SS_Rust_Win_Gui
         {
             closeSSLocal();
         }
-     
+
         protected override void WndProc(ref Message m)
         {
             var WM_SYSCOMMAND = 0X112;
             var SC_CLOSE = 0XF060;
             if (m.Msg == WM_SYSCOMMAND && m.WParam == (IntPtr)SC_CLOSE)
             {
-              
+
                 this.Hide();
                 return;
             }
@@ -236,6 +239,9 @@ namespace SS_Rust_Win_Gui
             ((ConfigServer)listBox1.SelectedItem).setVal(configServer);
 
             configData.servers.ElementAt(listBox1.SelectedIndex).setVal(configServer);
+
+            configData.local_port = s_local_port.Text;
+
             saveConfig(configData);
 
             label_save_msg.Text = "配置文件保存成功！";
@@ -348,7 +354,8 @@ namespace SS_Rust_Win_Gui
             {
                 configData.local_address = "0.0.0.0";
             }
-            else {
+            else
+            {
                 configData.local_address = "127.0.0.1";
             }
             saveConfig(configData);
