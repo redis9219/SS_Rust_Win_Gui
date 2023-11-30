@@ -7,3 +7,9 @@ After downloading, unzip the file sslocal.exe to the same folder as the applicat
 
 enjoy!
 
+## Development
+
+- IDE: Visual Studio 2022
+- Language: C# 
+- SDK: .NET 8.0
+
