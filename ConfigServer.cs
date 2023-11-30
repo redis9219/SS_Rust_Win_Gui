@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SS_Rust_Win_Gui
 {
@@ -12,17 +7,14 @@ namespace SS_Rust_Win_Gui
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public ConfigServer()
         {
-            server = "newConfig.com";
+            serverValue = "newConfig.com";
             server_port = "8088";
             password = "password";
             method = "chacha20-ietf-poly1305";
@@ -31,9 +23,9 @@ namespace SS_Rust_Win_Gui
             plugin = "";
             plugin_opt = "";
         }
-        public void setVal(ConfigServer configServer)
+        public void SetVal(ConfigServer configServer)
         {
-            server = configServer.server;
+            serverValue = configServer.server;
             server_port = configServer.server_port;
             password = configServer.password;
             method = configServer.method;
@@ -41,32 +33,33 @@ namespace SS_Rust_Win_Gui
             remark = configServer.remark;
             plugin = configServer.plugin;
             plugin_opt = configServer.plugin_opt;
-
-
+            NotifyPropertyChanged();
         }
-        private string serverValue = String.Empty;
+        private string serverValue = string.Empty;
+#pragma warning disable IDE1006 // 命名样式
         public string server
+#pragma warning restore IDE1006 // 命名样式
         {
             get
             {
-                return this.serverValue;
+                return serverValue;
             }
             set
             {
-                if (value != this.serverValue)
+                if (value != serverValue)
                 {
-                    this.serverValue = value;
+                    serverValue = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
-        public string server_port { get; set; }
-        public string password { get; set; }
-        public string method { get; set; }
-        public string timeout { get; set; }
-        public string remark { get; set; }
-        public string plugin { get; set; }
-        public string plugin_opt { get; set; }
+        public string server_port;
+        public string password;
+        public string method;
+        public string timeout;
+        public string remark;
+        public string plugin;
+        public string plugin_opt;
     }
 }
