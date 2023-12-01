@@ -1,4 +1,4 @@
-﻿using CliWrap;
+using CliWrap;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using CliWrap.Buffered;
@@ -139,19 +139,28 @@ namespace SS_Rust_Win_Gui
             ListBox1_SelectedIndexChanged();
         }
 
+        int preConfigServerIndex = -1;
         private void ListBox1_SelectedIndexChanged()
         {
             if (listBox1.SelectedIndex == -1)
             {
                 return;
             }
+            if (preConfigServerIndex == listBox1.SelectedIndex)
+            {
+                return;
+            }
+            else {
+                preConfigServerIndex = listBox1.SelectedIndex;
+            }
+
+
             ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex);
             if (configServer is not null)
             {
                 if (!configServer.server.Equals("newConfig.com"))
                 {
                     LoadServerConfig(configServer);
-                    notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", "SOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
                     _ = StartSocks5ProxyAsync(configServer);
                     configData.active_num = listBox1.SelectedIndex;
                     SaveConfig(configData);
@@ -222,6 +231,7 @@ namespace SS_Rust_Win_Gui
             cts = new();
             if (File.Exists("sslocal.exe"))
             {
+                notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", "SOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
                 var cmd = Cli.Wrap("sslocal.exe")
                     .WithValidation(CommandResultValidation.None)
                     .WithArguments(GetConfigArguments(configServer));
@@ -296,7 +306,7 @@ namespace SS_Rust_Win_Gui
             configData.local_port = s_local_port.Text;
             SaveConfig(configData);
             label_save_msg.Text = "配置文件保存成功！";
-
+            _ = StartSocks5ProxyAsync(configServer);
         }
 
         private void Button_cancel_Click(object sender, EventArgs e)
