@@ -41,10 +41,5 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="taskkill /F /IM sslocal.exe 1&gt;nul 2&gt;nul&#xD;&#xA;exit 0" />
-  </Target>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(ProjectDir)Resources\sslocal.exe $(OutDir)sslocal.exe" />
-  </Target>
+
 </Project>
