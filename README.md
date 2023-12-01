@@ -7,6 +7,15 @@ After downloading, unzip the file sslocal.exe to the same folder as the applicat
 
 enjoy!
 
+## Platforms
+
+OS                                    | Version                 | Architectures   
+--------------------------------------|-------------------------|-----------------
+Windows 10                            | Version 1607+           | x64, x86, Arm64 
+Windows 11                            | Version 22000+          | x64, x86, Arm64 
+Windows Server                        | 2012+                   | x64, x86        
+Windows Server Core                   | 2012+                   | x64, x86        
+
 ## Development
 
 - IDE: Visual Studio 2022
