@@ -10,6 +10,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
     <AutoGenerateBindingRedirects>False</AutoGenerateBindingRedirects>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <StartupObject>SS_Rust_Win_Gui.Program</StartupObject>
   </PropertyGroup>
