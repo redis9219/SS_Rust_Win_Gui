@@ -527,5 +527,35 @@ namespace SS_Rust_Win_Gui
 
         [GeneratedRegex("(?i)(?<=\\[)(.*)(?=\\])", RegexOptions.None, "zh-CN")]
         private static partial Regex MyRegex();
+
+
+
+        private void 剪贴板导入ss链接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IDataObject? iData = Clipboard.GetDataObject();
+            if (iData != null && iData.GetDataPresent(DataFormats.Text))
+            {
+                string? str = iData.GetData(DataFormats.Text) as string;
+                if (str != null)
+                {
+                    try
+                    {
+                        var res = SIP002UrlUtils.GetConfigServers(str);
+                        foreach (ConfigServer configServer in res)
+                        {
+                            configData.servers.Add(configServer);
+                        }
+                        SaveConfig(configData);
+                        notifyIcon1.ShowBalloonTip(0, "导入完成", "本次导入" + res.Count + "个服务器！", ToolTipIcon.Info);
+                        return;
+                    }
+                    catch (Exception) { 
+
+                    }
+                    
+                }
+            }
+            notifyIcon1.ShowBalloonTip(0, "导入失败", "请检查剪贴板内容！", ToolTipIcon.Error);
+        }
     }
 }

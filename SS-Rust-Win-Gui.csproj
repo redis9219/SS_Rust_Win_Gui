@@ -18,8 +18,9 @@
 		<Version>$(AssemblyVersion)</Version>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="CliWrap" Version="3.6.4" />
-		<PackageReference Include="NLog" Version="5.2.7" />
+		<PackageReference Include="CliWrap" Version="3.6.6" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.6.2" />
+		<PackageReference Include="NLog" Version="5.3.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 	<ItemGroup>

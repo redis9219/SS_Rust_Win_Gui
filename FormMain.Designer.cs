@@ -72,6 +72,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             服务器ToolStripMenuItem = new ToolStripMenuItem();
             无ToolStripMenuItem = new ToolStripMenuItem();
+            剪贴板导入ss链接ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator4 = new ToolStripSeparator();
             打开配置界面ToolStripMenuItem = new ToolStripMenuItem();
             查看日志ToolStripMenuItem = new ToolStripMenuItem();
@@ -593,15 +594,15 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 服务器ToolStripMenuItem, toolStripSeparator4, 打开配置界面ToolStripMenuItem, 查看日志ToolStripMenuItem, toolStripSeparator1, 开机启动ToolStripMenuItem, toolStripSeparator2, 开启系统代理ToolStripMenuItem, 允许局域网访问ToolStripMenuItem, toolStripSeparator3, 退出ToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 服务器ToolStripMenuItem, 剪贴板导入ss链接ToolStripMenuItem, toolStripSeparator4, 打开配置界面ToolStripMenuItem, 查看日志ToolStripMenuItem, toolStripSeparator1, 开机启动ToolStripMenuItem, toolStripSeparator2, 开启系统代理ToolStripMenuItem, 允许局域网访问ToolStripMenuItem, toolStripSeparator3, 退出ToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(161, 182);
+            contextMenuStrip1.Size = new Size(186, 204);
             // 
             // 服务器ToolStripMenuItem
             // 
             服务器ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 无ToolStripMenuItem });
             服务器ToolStripMenuItem.Name = "服务器ToolStripMenuItem";
-            服务器ToolStripMenuItem.Size = new Size(160, 22);
+            服务器ToolStripMenuItem.Size = new Size(185, 22);
             服务器ToolStripMenuItem.Text = "服务器";
             // 
             // 无ToolStripMenuItem
@@ -610,48 +611,55 @@
             无ToolStripMenuItem.Size = new Size(88, 22);
             无ToolStripMenuItem.Text = "无";
             // 
+            // 剪贴板导入ss链接ToolStripMenuItem
+            // 
+            剪贴板导入ss链接ToolStripMenuItem.Name = "剪贴板导入ss链接ToolStripMenuItem";
+            剪贴板导入ss链接ToolStripMenuItem.Size = new Size(185, 22);
+            剪贴板导入ss链接ToolStripMenuItem.Text = "剪贴板导入ss://链接";
+            剪贴板导入ss链接ToolStripMenuItem.Click += 剪贴板导入ss链接ToolStripMenuItem_Click;
+            // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(157, 6);
+            toolStripSeparator4.Size = new Size(182, 6);
             // 
             // 打开配置界面ToolStripMenuItem
             // 
             打开配置界面ToolStripMenuItem.Name = "打开配置界面ToolStripMenuItem";
-            打开配置界面ToolStripMenuItem.Size = new Size(160, 22);
+            打开配置界面ToolStripMenuItem.Size = new Size(185, 22);
             打开配置界面ToolStripMenuItem.Text = "打开配置界面";
             打开配置界面ToolStripMenuItem.Click += 打开配置界面ToolStripMenuItem_Click;
             // 
             // 查看日志ToolStripMenuItem
             // 
             查看日志ToolStripMenuItem.Name = "查看日志ToolStripMenuItem";
-            查看日志ToolStripMenuItem.Size = new Size(160, 22);
+            查看日志ToolStripMenuItem.Size = new Size(185, 22);
             查看日志ToolStripMenuItem.Text = "查看日志";
             查看日志ToolStripMenuItem.Click += 查看日志ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(157, 6);
+            toolStripSeparator1.Size = new Size(182, 6);
             // 
             // 开机启动ToolStripMenuItem
             // 
             开机启动ToolStripMenuItem.CheckOnClick = true;
             开机启动ToolStripMenuItem.Name = "开机启动ToolStripMenuItem";
-            开机启动ToolStripMenuItem.Size = new Size(160, 22);
+            开机启动ToolStripMenuItem.Size = new Size(185, 22);
             开机启动ToolStripMenuItem.Text = "开机启动";
             开机启动ToolStripMenuItem.Click += 开机启动ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(157, 6);
+            toolStripSeparator2.Size = new Size(182, 6);
             // 
             // 开启系统代理ToolStripMenuItem
             // 
             开启系统代理ToolStripMenuItem.CheckOnClick = true;
             开启系统代理ToolStripMenuItem.Name = "开启系统代理ToolStripMenuItem";
-            开启系统代理ToolStripMenuItem.Size = new Size(160, 22);
+            开启系统代理ToolStripMenuItem.Size = new Size(185, 22);
             开启系统代理ToolStripMenuItem.Text = "开启系统代理";
             开启系统代理ToolStripMenuItem.Click += 开启系统代理ToolStripMenuItem_Click;
             // 
@@ -659,19 +667,19 @@
             // 
             允许局域网访问ToolStripMenuItem.CheckOnClick = true;
             允许局域网访问ToolStripMenuItem.Name = "允许局域网访问ToolStripMenuItem";
-            允许局域网访问ToolStripMenuItem.Size = new Size(160, 22);
+            允许局域网访问ToolStripMenuItem.Size = new Size(185, 22);
             允许局域网访问ToolStripMenuItem.Text = "允许局域网访问";
             允许局域网访问ToolStripMenuItem.Click += 允许局域网访问ToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(157, 6);
+            toolStripSeparator3.Size = new Size(182, 6);
             // 
             // 退出ToolStripMenuItem
             // 
             退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            退出ToolStripMenuItem.Size = new Size(160, 22);
+            退出ToolStripMenuItem.Size = new Size(185, 22);
             退出ToolStripMenuItem.Text = "退出";
             退出ToolStripMenuItem.Click += 退出ToolStripMenuItem_Click;
             // 
@@ -760,5 +768,6 @@
         private ToolStripMenuItem 服务器ToolStripMenuItem;
         private ToolStripMenuItem 无ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem 剪贴板导入ss链接ToolStripMenuItem;
     }
 }
