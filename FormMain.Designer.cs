@@ -70,6 +70,9 @@
             panel1 = new Panel();
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
+            服务器ToolStripMenuItem = new ToolStripMenuItem();
+            无ToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator4 = new ToolStripSeparator();
             打开配置界面ToolStripMenuItem = new ToolStripMenuItem();
             查看日志ToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -590,9 +593,27 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 打开配置界面ToolStripMenuItem, 查看日志ToolStripMenuItem, toolStripSeparator1, 开机启动ToolStripMenuItem, toolStripSeparator2, 开启系统代理ToolStripMenuItem, 允许局域网访问ToolStripMenuItem, toolStripSeparator3, 退出ToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 服务器ToolStripMenuItem, toolStripSeparator4, 打开配置界面ToolStripMenuItem, 查看日志ToolStripMenuItem, toolStripSeparator1, 开机启动ToolStripMenuItem, toolStripSeparator2, 开启系统代理ToolStripMenuItem, 允许局域网访问ToolStripMenuItem, toolStripSeparator3, 退出ToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(161, 154);
+            contextMenuStrip1.Size = new Size(161, 182);
+            // 
+            // 服务器ToolStripMenuItem
+            // 
+            服务器ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 无ToolStripMenuItem });
+            服务器ToolStripMenuItem.Name = "服务器ToolStripMenuItem";
+            服务器ToolStripMenuItem.Size = new Size(160, 22);
+            服务器ToolStripMenuItem.Text = "服务器";
+            // 
+            // 无ToolStripMenuItem
+            // 
+            无ToolStripMenuItem.Name = "无ToolStripMenuItem";
+            无ToolStripMenuItem.Size = new Size(88, 22);
+            无ToolStripMenuItem.Text = "无";
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(157, 6);
             // 
             // 打开配置界面ToolStripMenuItem
             // 
@@ -736,5 +757,8 @@
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem 查看日志ToolStripMenuItem;
         private Panel panel1;
+        private ToolStripMenuItem 服务器ToolStripMenuItem;
+        private ToolStripMenuItem 无ToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator4;
     }
 }

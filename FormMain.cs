@@ -54,7 +54,7 @@ namespace SS_Rust_Win_Gui
 
 
         ConfigData configData = new();
-     
+
 
         private ConfigData LoadConfig()
         {
@@ -74,15 +74,63 @@ namespace SS_Rust_Win_Gui
                     res = JsonConvert.DeserializeObject<ConfigData>(value) ?? res;
                 }
             }
+            SyncContextMenu(res);
             return res;
         }
 
         private void SaveConfig(ConfigData configData)
         {
             File.WriteAllText(ConfigDatafile, JsonConvert.SerializeObject(configData, Newtonsoft.Json.Formatting.Indented));
+            SyncContextMenu(configData);
         }
 
+        private void SyncContextMenu(ConfigData configData)
+        {
+            服务器ToolStripMenuItem.DropDown.Items.Clear();
 
+            var i = 0;
+            foreach (ConfigServer configServer in configData.servers)
+            {
+                string labelTest = configServer.server;
+                if (!string.IsNullOrEmpty(configServer.remark))
+                {
+                    labelTest += " (" + configServer.remark + ")";
+                }
+                ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem(labelTest);
+                toolStripMenuItem.CheckOnClick = true;
+                toolStripMenuItem.Tag = i;
+                toolStripMenuItem.Click += SeverToolStripMenuItem_Click;
+                if (configData.active_num == i)
+                {
+                    toolStripMenuItem.Checked = true;
+                }
+                服务器ToolStripMenuItem.DropDown.Items.Add(toolStripMenuItem);
+                i++;
+            }
+        }
+
+        private void SeverToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            if (sender == null)
+            {
+                return;
+            }
+            if ((sender as ToolStripMenuItem).Tag is int select_num)
+            {
+                var i = 0;
+                foreach (ConfigServer configServer in configData.servers)
+                {
+                    if (select_num == i)
+                    {
+                        configData.active_num = select_num;
+                        SaveConfig(configData);
+                        _ = StartSocks5ProxyAsync(configServer);
+                    }
+                    i++;
+                }
+            }
+
+        }
 
         private async void Main_Load(object sender, EventArgs e)
         {
@@ -251,7 +299,7 @@ namespace SS_Rust_Win_Gui
                     p.Kill();
                 }
 
-                notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", configServer.remark  + "\r\nSOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
+                notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", configServer.remark + "\r\nSOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
                 var cmd = Cli.Wrap(RustAppPath)
                     .WithValidation(CommandResultValidation.None)
                     .WithArguments(GetConfigArguments(configServer));
