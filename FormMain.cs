@@ -251,7 +251,7 @@ namespace SS_Rust_Win_Gui
                     p.Kill();
                 }
 
-                notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", "SOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
+                notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", configServer.remark  + "\r\nSOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
                 var cmd = Cli.Wrap(RustAppPath)
                     .WithValidation(CommandResultValidation.None)
                     .WithArguments(GetConfigArguments(configServer));
