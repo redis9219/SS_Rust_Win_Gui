@@ -13,6 +13,9 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <StartupObject>SS_Rust_Win_Gui.Program</StartupObject>
+	  <AssemblyVersion>1.0.2.0</AssemblyVersion>
+	  <FileVersion>$(AssemblyVersion)</FileVersion>
+	  <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CliWrap" Version="3.6.4" />
