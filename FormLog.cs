@@ -48,7 +48,9 @@
                 txtBox.Select(txtBox.TextLength, 0);
                 txtBox.ScrollToCaret();
             };
-            txtBox.BeginInvoke(action);
+            if (txtBox.IsHandleCreated) {
+                txtBox.BeginInvoke(action);
+            }
         }
 
         public override System.Text.Encoding Encoding
