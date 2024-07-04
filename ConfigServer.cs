@@ -35,6 +35,13 @@ namespace SS_Rust_Win_Gui
             plugin_opt = configServer.plugin_opt;
             NotifyPropertyChanged();
         }
+
+        public ConfigServer Clone() {
+            ConfigServer configServer = new ConfigServer();
+            configServer.SetVal(this);
+            return configServer;
+        }
+
         private string serverValue = string.Empty;
 #pragma warning disable IDE1006 // 命名样式
         public string server
