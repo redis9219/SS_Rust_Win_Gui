@@ -96,20 +96,21 @@
             listBox1.BorderStyle = BorderStyle.None;
             listBox1.Dock = DockStyle.Fill;
             listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 17;
             listBox1.Location = new Point(0, 0);
-            listBox1.Margin = new Padding(2, 4, 2, 4);
+            listBox1.Margin = new Padding(2, 3, 2, 3);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(229, 344);
+            listBox1.Size = new Size(183, 281);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
             // 
             // button_add
             // 
             button_add.Dock = DockStyle.Fill;
-            button_add.Location = new Point(2, 4);
-            button_add.Margin = new Padding(2, 4, 2, 4);
+            button_add.Location = new Point(2, 3);
+            button_add.Margin = new Padding(2, 3, 2, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(111, 30);
+            button_add.Size = new Size(88, 25);
             button_add.TabIndex = 1;
             button_add.Text = "添加";
             button_add.UseVisualStyleBackColor = true;
@@ -118,10 +119,10 @@
             // button_remove
             // 
             button_remove.Dock = DockStyle.Fill;
-            button_remove.Location = new Point(117, 4);
-            button_remove.Margin = new Padding(2, 4, 2, 4);
+            button_remove.Location = new Point(94, 3);
+            button_remove.Margin = new Padding(2, 3, 2, 3);
             button_remove.Name = "button_remove";
-            button_remove.Size = new Size(112, 30);
+            button_remove.Size = new Size(89, 25);
             button_remove.TabIndex = 1;
             button_remove.Text = "删除";
             button_remove.UseVisualStyleBackColor = true;
@@ -130,10 +131,10 @@
             // button_copy
             // 
             button_copy.Dock = DockStyle.Fill;
-            button_copy.Location = new Point(2, 42);
-            button_copy.Margin = new Padding(2, 4, 2, 4);
+            button_copy.Location = new Point(2, 34);
+            button_copy.Margin = new Padding(2, 3, 2, 3);
             button_copy.Name = "button_copy";
-            button_copy.Size = new Size(111, 30);
+            button_copy.Size = new Size(88, 25);
             button_copy.TabIndex = 1;
             button_copy.Text = "复制";
             button_copy.UseVisualStyleBackColor = true;
@@ -142,10 +143,10 @@
             // button_m_up
             // 
             button_m_up.Dock = DockStyle.Fill;
-            button_m_up.Location = new Point(2, 80);
-            button_m_up.Margin = new Padding(2, 4, 2, 4);
+            button_m_up.Location = new Point(2, 65);
+            button_m_up.Margin = new Padding(2, 3, 2, 3);
             button_m_up.Name = "button_m_up";
-            button_m_up.Size = new Size(111, 33);
+            button_m_up.Size = new Size(88, 26);
             button_m_up.TabIndex = 1;
             button_m_up.Text = "上移";
             button_m_up.UseVisualStyleBackColor = true;
@@ -154,10 +155,10 @@
             // button_m_down
             // 
             button_m_down.Dock = DockStyle.Fill;
-            button_m_down.Location = new Point(117, 80);
-            button_m_down.Margin = new Padding(2, 4, 2, 4);
+            button_m_down.Location = new Point(94, 65);
+            button_m_down.Margin = new Padding(2, 3, 2, 3);
             button_m_down.Name = "button_m_down";
-            button_m_down.Size = new Size(112, 33);
+            button_m_down.Size = new Size(89, 26);
             button_m_down.TabIndex = 1;
             button_m_down.Text = "下移";
             button_m_down.UseVisualStyleBackColor = true;
@@ -167,11 +168,11 @@
             // 
             groupBox1.Controls.Add(tableLayoutPanel3);
             groupBox1.Dock = DockStyle.Fill;
-            groupBox1.Location = new Point(241, 4);
-            groupBox1.Margin = new Padding(2, 4, 2, 4);
+            groupBox1.Location = new Point(193, 3);
+            groupBox1.Margin = new Padding(2, 3, 2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(2, 4, 2, 4);
-            groupBox1.Size = new Size(555, 346);
+            groupBox1.Padding = new Padding(2, 3, 2, 3);
+            groupBox1.Size = new Size(444, 283);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "服务器";
@@ -179,7 +180,7 @@
             // tableLayoutPanel3
             // 
             tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.Controls.Add(label1, 0, 0);
             tableLayoutPanel3.Controls.Add(label2, 0, 1);
@@ -198,30 +199,29 @@
             tableLayoutPanel3.Controls.Add(s_server_method, 1, 3);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel1, 1, 2);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(2, 24);
-            tableLayoutPanel3.Margin = new Padding(4);
+            tableLayoutPanel3.Location = new Point(2, 19);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 9;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel3.Size = new Size(551, 318);
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(440, 261);
             tableLayoutPanel3.TabIndex = 4;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new Point(2, 9);
+            label1.Location = new Point(2, 6);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(84, 20);
+            label1.Size = new Size(68, 17);
             label1.TabIndex = 0;
             label1.Text = "服务器地址";
             // 
@@ -229,20 +229,20 @@
             // 
             label2.Anchor = AnchorStyles.Left;
             label2.AutoSize = true;
-            label2.Location = new Point(2, 47);
+            label2.Location = new Point(2, 36);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(84, 20);
+            label2.Size = new Size(68, 17);
             label2.TabIndex = 0;
             label2.Text = "服务器端口";
             // 
             // s_server_timout
             // 
             s_server_timout.Dock = DockStyle.Fill;
-            s_server_timout.Location = new Point(102, 270);
-            s_server_timout.Margin = new Padding(2, 4, 2, 4);
+            s_server_timout.Location = new Point(82, 213);
+            s_server_timout.Margin = new Padding(2, 3, 2, 3);
             s_server_timout.Name = "s_server_timout";
-            s_server_timout.Size = new Size(447, 27);
+            s_server_timout.Size = new Size(356, 23);
             s_server_timout.TabIndex = 1;
             s_server_timout.KeyPress += NumberBox_KeyPress;
             // 
@@ -250,79 +250,79 @@
             // 
             label3.Anchor = AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(2, 85);
+            label3.Location = new Point(2, 66);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(39, 20);
+            label3.Size = new Size(32, 17);
             label3.TabIndex = 0;
             label3.Text = "密码";
             // 
             // s_server_remark
             // 
             s_server_remark.Dock = DockStyle.Fill;
-            s_server_remark.Location = new Point(102, 232);
-            s_server_remark.Margin = new Padding(2, 4, 2, 4);
+            s_server_remark.Location = new Point(82, 183);
+            s_server_remark.Margin = new Padding(2, 3, 2, 3);
             s_server_remark.Name = "s_server_remark";
-            s_server_remark.Size = new Size(447, 27);
+            s_server_remark.Size = new Size(356, 23);
             s_server_remark.TabIndex = 1;
             // 
             // s_server_plugin_opt
             // 
             s_server_plugin_opt.Dock = DockStyle.Fill;
-            s_server_plugin_opt.Location = new Point(102, 194);
-            s_server_plugin_opt.Margin = new Padding(2, 4, 2, 4);
+            s_server_plugin_opt.Location = new Point(82, 153);
+            s_server_plugin_opt.Margin = new Padding(2, 3, 2, 3);
             s_server_plugin_opt.Name = "s_server_plugin_opt";
-            s_server_plugin_opt.Size = new Size(447, 27);
+            s_server_plugin_opt.Size = new Size(356, 23);
             s_server_plugin_opt.TabIndex = 1;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(2, 123);
+            label4.Location = new Point(2, 96);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(39, 20);
+            label4.Size = new Size(32, 17);
             label4.TabIndex = 0;
             label4.Text = "加密";
             // 
             // s_server_plugin
             // 
             s_server_plugin.Dock = DockStyle.Fill;
-            s_server_plugin.Location = new Point(102, 156);
-            s_server_plugin.Margin = new Padding(2, 4, 2, 4);
+            s_server_plugin.Location = new Point(82, 123);
+            s_server_plugin.Margin = new Padding(2, 3, 2, 3);
             s_server_plugin.Name = "s_server_plugin";
-            s_server_plugin.Size = new Size(447, 27);
+            s_server_plugin.Size = new Size(356, 23);
             s_server_plugin.TabIndex = 1;
             // 
             // s_server_name
             // 
             s_server_name.Dock = DockStyle.Fill;
-            s_server_name.Location = new Point(102, 4);
-            s_server_name.Margin = new Padding(2, 4, 2, 4);
+            s_server_name.Location = new Point(82, 3);
+            s_server_name.Margin = new Padding(2, 3, 2, 3);
             s_server_name.Name = "s_server_name";
-            s_server_name.Size = new Size(447, 27);
+            s_server_name.Size = new Size(356, 23);
             s_server_name.TabIndex = 1;
             // 
             // label7
             // 
             label7.Anchor = AnchorStyles.Left;
             label7.AutoSize = true;
-            label7.Location = new Point(2, 237);
+            label7.Location = new Point(2, 186);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(39, 20);
+            label7.Size = new Size(32, 17);
             label7.TabIndex = 0;
             label7.Text = "备注";
             // 
             // s_server_port
             // 
             s_server_port.Dock = DockStyle.Fill;
-            s_server_port.Location = new Point(102, 42);
-            s_server_port.Margin = new Padding(2, 4, 2, 4);
+            s_server_port.Location = new Point(82, 33);
+            s_server_port.Margin = new Padding(2, 3, 2, 3);
             s_server_port.MaxLength = 5;
             s_server_port.Name = "s_server_port";
-            s_server_port.Size = new Size(447, 27);
+            s_server_port.Size = new Size(356, 23);
             s_server_port.TabIndex = 1;
             s_server_port.KeyPress += NumberBox_KeyPress;
             // 
@@ -330,10 +330,10 @@
             // 
             label6.Anchor = AnchorStyles.Left;
             label6.AutoSize = true;
-            label6.Location = new Point(2, 199);
+            label6.Location = new Point(2, 156);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(69, 20);
+            label6.Size = new Size(56, 17);
             label6.TabIndex = 0;
             label6.Text = "插件选项";
             // 
@@ -341,10 +341,10 @@
             // 
             label5.Anchor = AnchorStyles.Left;
             label5.AutoSize = true;
-            label5.Location = new Point(2, 161);
+            label5.Location = new Point(2, 126);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(69, 20);
+            label5.Size = new Size(56, 17);
             label5.TabIndex = 0;
             label5.Text = "插件程序";
             // 
@@ -352,10 +352,10 @@
             // 
             label8.Anchor = AnchorStyles.Left;
             label8.AutoSize = true;
-            label8.Location = new Point(2, 275);
+            label8.Location = new Point(2, 216);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(39, 20);
+            label8.Size = new Size(32, 17);
             label8.TabIndex = 0;
             label8.Text = "超时";
             // 
@@ -363,34 +363,36 @@
             // 
             s_server_method.Dock = DockStyle.Fill;
             s_server_method.FormattingEnabled = true;
-            s_server_method.Location = new Point(103, 117);
+            s_server_method.Location = new Point(82, 92);
+            s_server_method.Margin = new Padding(2);
             s_server_method.Name = "s_server_method";
-            s_server_method.Size = new Size(445, 28);
+            s_server_method.Size = new Size(356, 25);
             s_server_method.TabIndex = 2;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.Controls.Add(button_switch_pwd, 1, 0);
             tableLayoutPanel1.Controls.Add(s_server_passwd, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(100, 76);
+            tableLayoutPanel1.Location = new Point(80, 60);
             tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(451, 38);
+            tableLayoutPanel1.Size = new Size(360, 30);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // button_switch_pwd
             // 
             button_switch_pwd.Dock = DockStyle.Fill;
             button_switch_pwd.Image = Properties.Resources.no_eye;
-            button_switch_pwd.Location = new Point(404, 3);
+            button_switch_pwd.Location = new Point(322, 2);
+            button_switch_pwd.Margin = new Padding(2);
             button_switch_pwd.Name = "button_switch_pwd";
-            button_switch_pwd.Size = new Size(44, 32);
+            button_switch_pwd.Size = new Size(36, 26);
             button_switch_pwd.TabIndex = 2;
             button_switch_pwd.UseVisualStyleBackColor = true;
             button_switch_pwd.Click += Button_switch_pwd_Click;
@@ -398,21 +400,21 @@
             // s_server_passwd
             // 
             s_server_passwd.Dock = DockStyle.Fill;
-            s_server_passwd.Location = new Point(2, 4);
-            s_server_passwd.Margin = new Padding(2, 4, 2, 4);
+            s_server_passwd.Location = new Point(2, 3);
+            s_server_passwd.Margin = new Padding(2, 3, 2, 3);
             s_server_passwd.Name = "s_server_passwd";
             s_server_passwd.PasswordChar = '*';
-            s_server_passwd.Size = new Size(397, 27);
+            s_server_passwd.Size = new Size(316, 23);
             s_server_passwd.TabIndex = 1;
             // 
             // s_local_port
             // 
             s_local_port.Anchor = AnchorStyles.Left;
-            s_local_port.Location = new Point(102, 5);
-            s_local_port.Margin = new Padding(2, 4, 2, 4);
+            s_local_port.Location = new Point(82, 4);
+            s_local_port.Margin = new Padding(2, 3, 2, 3);
             s_local_port.MaxLength = 5;
             s_local_port.Name = "s_local_port";
-            s_local_port.Size = new Size(150, 27);
+            s_local_port.Size = new Size(121, 23);
             s_local_port.TabIndex = 1;
             s_local_port.KeyPress += NumberBox_KeyPress;
             // 
@@ -420,20 +422,20 @@
             // 
             label9.Anchor = AnchorStyles.Left;
             label9.AutoSize = true;
-            label9.Location = new Point(2, 9);
+            label9.Location = new Point(2, 7);
             label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(69, 20);
+            label9.Size = new Size(56, 17);
             label9.TabIndex = 0;
             label9.Text = "代理端口";
             // 
             // button_save
             // 
             button_save.Dock = DockStyle.Fill;
-            button_save.Location = new Point(253, 4);
-            button_save.Margin = new Padding(2, 4, 2, 4);
+            button_save.Location = new Point(204, 3);
+            button_save.Margin = new Padding(2, 3, 2, 3);
             button_save.Name = "button_save";
-            button_save.Size = new Size(96, 33);
+            button_save.Size = new Size(76, 26);
             button_save.TabIndex = 3;
             button_save.Text = "确定";
             button_save.UseVisualStyleBackColor = true;
@@ -442,10 +444,10 @@
             // button_cancel
             // 
             button_cancel.Dock = DockStyle.Fill;
-            button_cancel.Location = new Point(353, 4);
-            button_cancel.Margin = new Padding(2, 4, 2, 4);
+            button_cancel.Location = new Point(284, 3);
+            button_cancel.Margin = new Padding(2, 3, 2, 3);
             button_cancel.Name = "button_cancel";
-            button_cancel.Size = new Size(96, 33);
+            button_cancel.Size = new Size(76, 26);
             button_cancel.TabIndex = 3;
             button_cancel.Text = "取消";
             button_cancel.UseVisualStyleBackColor = true;
@@ -454,10 +456,10 @@
             // button_apply
             // 
             button_apply.Dock = DockStyle.Fill;
-            button_apply.Location = new Point(453, 4);
-            button_apply.Margin = new Padding(2, 4, 2, 4);
+            button_apply.Location = new Point(364, 3);
+            button_apply.Margin = new Padding(2, 3, 2, 3);
             button_apply.Name = "button_apply";
-            button_apply.Size = new Size(96, 33);
+            button_apply.Size = new Size(76, 26);
             button_apply.TabIndex = 3;
             button_apply.Text = "应用";
             button_apply.UseVisualStyleBackColor = true;
@@ -474,14 +476,13 @@
             tableLayoutPanel2.Controls.Add(button_copy, 0, 1);
             tableLayoutPanel2.Controls.Add(button_remove, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(4, 358);
-            tableLayoutPanel2.Margin = new Padding(4);
+            tableLayoutPanel2.Location = new Point(3, 292);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 3;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Size = new Size(231, 117);
+            tableLayoutPanel2.Size = new Size(185, 94);
             tableLayoutPanel2.TabIndex = 1;
             // 
             // tableLayoutPanel4
@@ -494,15 +495,14 @@
             tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 1, 1);
             tableLayoutPanel4.Controls.Add(panel1, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(12, 12);
-            tableLayoutPanel4.Margin = new Padding(4);
+            tableLayoutPanel4.Location = new Point(10, 10);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 125F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel4.Size = new Size(798, 479);
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(639, 389);
             tableLayoutPanel4.TabIndex = 5;
             // 
             // tableLayoutPanel5
@@ -512,20 +512,19 @@
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
             tableLayoutPanel5.Controls.Add(tableLayoutPanel7, 0, 2);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(243, 358);
-            tableLayoutPanel5.Margin = new Padding(4);
+            tableLayoutPanel5.Location = new Point(194, 292);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 3;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel5.Size = new Size(551, 117);
+            tableLayoutPanel5.Size = new Size(442, 94);
             tableLayoutPanel5.TabIndex = 3;
             // 
             // tableLayoutPanel6
             // 
             tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel6.Controls.Add(s_local_port, 1, 0);
             tableLayoutPanel6.Controls.Add(label9, 0, 0);
@@ -535,38 +534,37 @@
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(551, 38);
+            tableLayoutPanel6.Size = new Size(442, 31);
             tableLayoutPanel6.TabIndex = 0;
             // 
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.ColumnCount = 4;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel7.Controls.Add(button_save, 1, 0);
             tableLayoutPanel7.Controls.Add(button_apply, 3, 0);
             tableLayoutPanel7.Controls.Add(button_cancel, 2, 0);
             tableLayoutPanel7.Controls.Add(label_save_msg, 0, 0);
             tableLayoutPanel7.Dock = DockStyle.Fill;
-            tableLayoutPanel7.Location = new Point(0, 76);
+            tableLayoutPanel7.Location = new Point(0, 62);
             tableLayoutPanel7.Margin = new Padding(0);
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
-            tableLayoutPanel7.Size = new Size(551, 41);
+            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
+            tableLayoutPanel7.Size = new Size(442, 32);
             tableLayoutPanel7.TabIndex = 1;
             // 
             // label_save_msg
             // 
             label_save_msg.Anchor = AnchorStyles.Right;
             label_save_msg.AutoSize = true;
-            label_save_msg.Location = new Point(247, 10);
-            label_save_msg.Margin = new Padding(4, 0, 4, 0);
+            label_save_msg.Location = new Point(199, 7);
             label_save_msg.Name = "label_save_msg";
-            label_save_msg.Size = new Size(0, 20);
+            label_save_msg.Size = new Size(0, 17);
             label_save_msg.TabIndex = 4;
             // 
             // panel1
@@ -575,9 +573,10 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(listBox1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(233, 348);
+            panel1.Size = new Size(187, 285);
             panel1.TabIndex = 4;
             // 
             // notifyIcon1
@@ -593,45 +592,45 @@
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 打开配置界面ToolStripMenuItem, 查看日志ToolStripMenuItem, toolStripSeparator1, 开机启动ToolStripMenuItem, toolStripSeparator2, 开启系统代理ToolStripMenuItem, 允许局域网访问ToolStripMenuItem, toolStripSeparator3, 退出ToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(184, 166);
+            contextMenuStrip1.Size = new Size(161, 154);
             // 
             // 打开配置界面ToolStripMenuItem
             // 
             打开配置界面ToolStripMenuItem.Name = "打开配置界面ToolStripMenuItem";
-            打开配置界面ToolStripMenuItem.Size = new Size(183, 24);
+            打开配置界面ToolStripMenuItem.Size = new Size(160, 22);
             打开配置界面ToolStripMenuItem.Text = "打开配置界面";
             打开配置界面ToolStripMenuItem.Click += 打开配置界面ToolStripMenuItem_Click;
             // 
             // 查看日志ToolStripMenuItem
             // 
             查看日志ToolStripMenuItem.Name = "查看日志ToolStripMenuItem";
-            查看日志ToolStripMenuItem.Size = new Size(183, 24);
+            查看日志ToolStripMenuItem.Size = new Size(160, 22);
             查看日志ToolStripMenuItem.Text = "查看日志";
             查看日志ToolStripMenuItem.Click += 查看日志ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(180, 6);
+            toolStripSeparator1.Size = new Size(157, 6);
             // 
             // 开机启动ToolStripMenuItem
             // 
             开机启动ToolStripMenuItem.CheckOnClick = true;
             开机启动ToolStripMenuItem.Name = "开机启动ToolStripMenuItem";
-            开机启动ToolStripMenuItem.Size = new Size(183, 24);
+            开机启动ToolStripMenuItem.Size = new Size(160, 22);
             开机启动ToolStripMenuItem.Text = "开机启动";
             开机启动ToolStripMenuItem.Click += 开机启动ToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(180, 6);
+            toolStripSeparator2.Size = new Size(157, 6);
             // 
             // 开启系统代理ToolStripMenuItem
             // 
             开启系统代理ToolStripMenuItem.CheckOnClick = true;
             开启系统代理ToolStripMenuItem.Name = "开启系统代理ToolStripMenuItem";
-            开启系统代理ToolStripMenuItem.Size = new Size(183, 24);
+            开启系统代理ToolStripMenuItem.Size = new Size(160, 22);
             开启系统代理ToolStripMenuItem.Text = "开启系统代理";
             开启系统代理ToolStripMenuItem.Click += 开启系统代理ToolStripMenuItem_Click;
             // 
@@ -639,33 +638,33 @@
             // 
             允许局域网访问ToolStripMenuItem.CheckOnClick = true;
             允许局域网访问ToolStripMenuItem.Name = "允许局域网访问ToolStripMenuItem";
-            允许局域网访问ToolStripMenuItem.Size = new Size(183, 24);
+            允许局域网访问ToolStripMenuItem.Size = new Size(160, 22);
             允许局域网访问ToolStripMenuItem.Text = "允许局域网访问";
             允许局域网访问ToolStripMenuItem.Click += 允许局域网访问ToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(180, 6);
+            toolStripSeparator3.Size = new Size(157, 6);
             // 
             // 退出ToolStripMenuItem
             // 
             退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            退出ToolStripMenuItem.Size = new Size(183, 24);
+            退出ToolStripMenuItem.Size = new Size(160, 22);
             退出ToolStripMenuItem.Text = "退出";
             退出ToolStripMenuItem.Click += 退出ToolStripMenuItem_Click;
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(822, 503);
+            ClientSize = new Size(659, 409);
             Controls.Add(tableLayoutPanel4);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 4, 2, 4);
-            MinimumSize = new Size(840, 550);
+            Margin = new Padding(2, 3, 2, 3);
+            MinimumSize = new Size(675, 448);
             Name = "FormMain";
-            Padding = new Padding(12);
+            Padding = new Padding(10);
             Text = "Main";
             FormClosing += Main_FormClosing;
             Load += Main_Load;

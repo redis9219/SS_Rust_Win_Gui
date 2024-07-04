@@ -5,12 +5,22 @@ using CliWrap.Buffered;
 using CliWrap.EventStream;
 using System.Text;
 using SS_Rust_Win_Gui.Utils;
+using System.Diagnostics;
+using static System.Windows.Forms.AxHost;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SS_Rust_Win_Gui
 {
     public partial class FormMain : Form
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly string ApplicationPath = AppDomain.CurrentDomain.BaseDirectory;
+
+        private static readonly string RustAppName = "sslocal";
+        private static readonly string RustAppNameWithExt = RustAppName + ".exe";
+        private static readonly string RustAppPath = ApplicationPath + RustAppNameWithExt;
+        private static string ConfigDatafile = ApplicationPath + "config.json";
         public FormMain()
         {
             InitializeComponent();
@@ -44,7 +54,7 @@ namespace SS_Rust_Win_Gui
 
 
         ConfigData configData = new();
-        private static string ConfigDatafile = "config.json";
+     
 
         private ConfigData LoadConfig()
         {
@@ -76,6 +86,7 @@ namespace SS_Rust_Win_Gui
 
         private async void Main_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(ApplicationPath);
             string[] mt = await GetMethodsAsync();
             s_server_method.Items.AddRange(mt);
             //isAutoStart = AutoStartUtils.GetAutoStart();
@@ -112,9 +123,9 @@ namespace SS_Rust_Win_Gui
 
         private async Task<string[]> GetMethodsAsync()
         {
-            if (File.Exists("sslocal.exe"))
+            if (File.Exists(RustAppPath))
             {
-                var result = await Cli.Wrap("sslocal.exe").WithArguments("-m").WithValidation(CommandResultValidation.None).ExecuteBufferedAsync();
+                var result = await Cli.Wrap(RustAppPath).WithArguments("-m").WithValidation(CommandResultValidation.None).ExecuteBufferedAsync();
                 string line = result.StandardError;
                 Regex rgx = MyRegex();//中括号[]
                 line = rgx.Match(line).Value;//中括号[]
@@ -127,12 +138,13 @@ namespace SS_Rust_Win_Gui
                 }
                 return res;
             }
-            else {
+            else
+            {
                 MessageBox.Show("sslocal.exe不存在，即将退出！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
                 return [];
             }
-           
+
         }
         private void ListBox1_SelectedIndexChanged(object? sender, EventArgs e)
         {
@@ -150,7 +162,8 @@ namespace SS_Rust_Win_Gui
             {
                 return;
             }
-            else {
+            else
+            {
                 preConfigServerIndex = listBox1.SelectedIndex;
             }
 
@@ -229,10 +242,17 @@ namespace SS_Rust_Win_Gui
         {
             cts.Cancel();
             cts = new();
-            if (File.Exists("sslocal.exe"))
+            if (File.Exists(RustAppPath))
             {
+
+                Process[] ps = Process.GetProcessesByName("sslocal");
+                foreach (Process p in ps)
+                {
+                    p.Kill();
+                }
+
                 notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", "SOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
-                var cmd = Cli.Wrap("sslocal.exe")
+                var cmd = Cli.Wrap(RustAppPath)
                     .WithValidation(CommandResultValidation.None)
                     .WithArguments(GetConfigArguments(configServer));
                 //.ExecuteAsync(cts.Token);
@@ -256,7 +276,8 @@ namespace SS_Rust_Win_Gui
                     }
                 }
             }
-            else {
+            else
+            {
                 MessageBox.Show("sslocal.exe不存在，即将退出！", "系统提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
@@ -304,6 +325,7 @@ namespace SS_Rust_Win_Gui
             ConfigServer configServer = GetServerConfig();
             configData.servers.ElementAt(listBox1.SelectedIndex).SetVal(configServer);
             configData.local_port = s_local_port.Text;
+            configData.active_num = listBox1.SelectedIndex;
             SaveConfig(configData);
             label_save_msg.Text = "配置文件保存成功！";
             _ = StartSocks5ProxyAsync(configServer);
@@ -355,7 +377,7 @@ namespace SS_Rust_Win_Gui
 
         private void Button_copy_Click(object sender, EventArgs e)
         {
-            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex);
+            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex).Clone();
             configData.servers.Add(configServer);
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
