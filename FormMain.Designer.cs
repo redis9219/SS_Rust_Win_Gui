@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            listBox1 = new ListBox();
             button_add = new Button();
             button_remove = new Button();
             button_copy = new Button();
@@ -56,18 +55,22 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             button_switch_pwd = new Button();
             s_server_passwd = new TextBox();
-            s_local_port = new TextBox();
-            label9 = new Label();
-            button_save = new Button();
-            button_cancel = new Button();
-            button_apply = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
             tableLayoutPanel6 = new TableLayoutPanel();
+            s_local_port = new TextBox();
+            label9 = new Label();
             tableLayoutPanel7 = new TableLayoutPanel();
+            button_apply = new Button();
+            button_cancel = new Button();
             label_save_msg = new Label();
             panel1 = new Panel();
+            dataGridView1 = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewLinkColumn();
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
             服务器ToolStripMenuItem = new ToolStripMenuItem();
@@ -92,21 +95,9 @@
             tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // listBox1
-            // 
-            listBox1.BorderStyle = BorderStyle.None;
-            listBox1.Dock = DockStyle.Fill;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 17;
-            listBox1.Location = new Point(0, 0);
-            listBox1.Margin = new Padding(2, 3, 2, 3);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(183, 281);
-            listBox1.TabIndex = 0;
-            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
             // 
             // button_add
             // 
@@ -114,7 +105,7 @@
             button_add.Location = new Point(2, 3);
             button_add.Margin = new Padding(2, 3, 2, 3);
             button_add.Name = "button_add";
-            button_add.Size = new Size(88, 25);
+            button_add.Size = new Size(171, 25);
             button_add.TabIndex = 1;
             button_add.Text = "添加";
             button_add.UseVisualStyleBackColor = true;
@@ -123,10 +114,10 @@
             // button_remove
             // 
             button_remove.Dock = DockStyle.Fill;
-            button_remove.Location = new Point(94, 3);
+            button_remove.Location = new Point(177, 3);
             button_remove.Margin = new Padding(2, 3, 2, 3);
             button_remove.Name = "button_remove";
-            button_remove.Size = new Size(89, 25);
+            button_remove.Size = new Size(171, 25);
             button_remove.TabIndex = 1;
             button_remove.Text = "删除";
             button_remove.UseVisualStyleBackColor = true;
@@ -138,7 +129,7 @@
             button_copy.Location = new Point(2, 34);
             button_copy.Margin = new Padding(2, 3, 2, 3);
             button_copy.Name = "button_copy";
-            button_copy.Size = new Size(88, 25);
+            button_copy.Size = new Size(171, 25);
             button_copy.TabIndex = 1;
             button_copy.Text = "复制";
             button_copy.UseVisualStyleBackColor = true;
@@ -150,7 +141,7 @@
             button_m_up.Location = new Point(2, 65);
             button_m_up.Margin = new Padding(2, 3, 2, 3);
             button_m_up.Name = "button_m_up";
-            button_m_up.Size = new Size(88, 26);
+            button_m_up.Size = new Size(171, 26);
             button_m_up.TabIndex = 1;
             button_m_up.Text = "上移";
             button_m_up.UseVisualStyleBackColor = true;
@@ -159,10 +150,10 @@
             // button_m_down
             // 
             button_m_down.Dock = DockStyle.Fill;
-            button_m_down.Location = new Point(94, 65);
+            button_m_down.Location = new Point(177, 65);
             button_m_down.Margin = new Padding(2, 3, 2, 3);
             button_m_down.Name = "button_m_down";
-            button_m_down.Size = new Size(89, 26);
+            button_m_down.Size = new Size(171, 26);
             button_m_down.TabIndex = 1;
             button_m_down.Text = "下移";
             button_m_down.UseVisualStyleBackColor = true;
@@ -172,11 +163,11 @@
             // 
             groupBox1.Controls.Add(tableLayoutPanel3);
             groupBox1.Dock = DockStyle.Fill;
-            groupBox1.Location = new Point(193, 3);
+            groupBox1.Location = new Point(358, 3);
             groupBox1.Margin = new Padding(2, 3, 2, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(2, 3, 2, 3);
-            groupBox1.Size = new Size(444, 283);
+            groupBox1.Size = new Size(346, 283);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "服务器";
@@ -215,7 +206,7 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(440, 261);
+            tableLayoutPanel3.Size = new Size(342, 261);
             tableLayoutPanel3.TabIndex = 4;
             // 
             // label1
@@ -246,7 +237,7 @@
             s_server_timout.Location = new Point(82, 213);
             s_server_timout.Margin = new Padding(2, 3, 2, 3);
             s_server_timout.Name = "s_server_timout";
-            s_server_timout.Size = new Size(356, 23);
+            s_server_timout.Size = new Size(258, 23);
             s_server_timout.TabIndex = 1;
             s_server_timout.KeyPress += NumberBox_KeyPress;
             // 
@@ -267,7 +258,7 @@
             s_server_remark.Location = new Point(82, 183);
             s_server_remark.Margin = new Padding(2, 3, 2, 3);
             s_server_remark.Name = "s_server_remark";
-            s_server_remark.Size = new Size(356, 23);
+            s_server_remark.Size = new Size(258, 23);
             s_server_remark.TabIndex = 1;
             // 
             // s_server_plugin_opt
@@ -276,7 +267,7 @@
             s_server_plugin_opt.Location = new Point(82, 153);
             s_server_plugin_opt.Margin = new Padding(2, 3, 2, 3);
             s_server_plugin_opt.Name = "s_server_plugin_opt";
-            s_server_plugin_opt.Size = new Size(356, 23);
+            s_server_plugin_opt.Size = new Size(258, 23);
             s_server_plugin_opt.TabIndex = 1;
             // 
             // label4
@@ -296,7 +287,7 @@
             s_server_plugin.Location = new Point(82, 123);
             s_server_plugin.Margin = new Padding(2, 3, 2, 3);
             s_server_plugin.Name = "s_server_plugin";
-            s_server_plugin.Size = new Size(356, 23);
+            s_server_plugin.Size = new Size(258, 23);
             s_server_plugin.TabIndex = 1;
             // 
             // s_server_name
@@ -305,7 +296,7 @@
             s_server_name.Location = new Point(82, 3);
             s_server_name.Margin = new Padding(2, 3, 2, 3);
             s_server_name.Name = "s_server_name";
-            s_server_name.Size = new Size(356, 23);
+            s_server_name.Size = new Size(258, 23);
             s_server_name.TabIndex = 1;
             // 
             // label7
@@ -326,7 +317,7 @@
             s_server_port.Margin = new Padding(2, 3, 2, 3);
             s_server_port.MaxLength = 5;
             s_server_port.Name = "s_server_port";
-            s_server_port.Size = new Size(356, 23);
+            s_server_port.Size = new Size(258, 23);
             s_server_port.TabIndex = 1;
             s_server_port.KeyPress += NumberBox_KeyPress;
             // 
@@ -370,7 +361,7 @@
             s_server_method.Location = new Point(82, 92);
             s_server_method.Margin = new Padding(2);
             s_server_method.Name = "s_server_method";
-            s_server_method.Size = new Size(356, 25);
+            s_server_method.Size = new Size(258, 25);
             s_server_method.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -386,14 +377,14 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(360, 30);
+            tableLayoutPanel1.Size = new Size(262, 30);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // button_switch_pwd
             // 
             button_switch_pwd.Dock = DockStyle.Fill;
             button_switch_pwd.Image = Properties.Resources.no_eye;
-            button_switch_pwd.Location = new Point(322, 2);
+            button_switch_pwd.Location = new Point(224, 2);
             button_switch_pwd.Margin = new Padding(2);
             button_switch_pwd.Name = "button_switch_pwd";
             button_switch_pwd.Size = new Size(36, 26);
@@ -408,8 +399,79 @@
             s_server_passwd.Margin = new Padding(2, 3, 2, 3);
             s_server_passwd.Name = "s_server_passwd";
             s_server_passwd.PasswordChar = '*';
-            s_server_passwd.Size = new Size(316, 23);
+            s_server_passwd.Size = new Size(218, 23);
             s_server_passwd.TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(button_add, 0, 0);
+            tableLayoutPanel2.Controls.Add(button_m_down, 1, 2);
+            tableLayoutPanel2.Controls.Add(button_m_up, 0, 2);
+            tableLayoutPanel2.Controls.Add(button_copy, 0, 1);
+            tableLayoutPanel2.Controls.Add(button_remove, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 292);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel2.Size = new Size(350, 94);
+            tableLayoutPanel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 350F));
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel2, 0, 1);
+            tableLayoutPanel4.Controls.Add(groupBox1, 1, 0);
+            tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 1, 1);
+            tableLayoutPanel4.Controls.Add(panel1, 0, 0);
+            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Location = new Point(10, 10);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel4.Size = new Size(706, 389);
+            tableLayoutPanel4.TabIndex = 5;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 1;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
+            tableLayoutPanel5.Controls.Add(tableLayoutPanel7, 0, 2);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(359, 292);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 3;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel5.Size = new Size(344, 94);
+            tableLayoutPanel5.TabIndex = 3;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 2;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Controls.Add(s_local_port, 1, 0);
+            tableLayoutPanel6.Controls.Add(label9, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(0, 0);
+            tableLayoutPanel6.Margin = new Padding(0);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 1;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.Size = new Size(344, 31);
+            tableLayoutPanel6.TabIndex = 0;
             // 
             // s_local_port
             // 
@@ -433,114 +495,6 @@
             label9.TabIndex = 0;
             label9.Text = "代理端口";
             // 
-            // button_save
-            // 
-            button_save.Dock = DockStyle.Fill;
-            button_save.Location = new Point(204, 3);
-            button_save.Margin = new Padding(2, 3, 2, 3);
-            button_save.Name = "button_save";
-            button_save.Size = new Size(76, 26);
-            button_save.TabIndex = 3;
-            button_save.Text = "确定";
-            button_save.UseVisualStyleBackColor = true;
-            button_save.Click += Button_save_Click;
-            // 
-            // button_cancel
-            // 
-            button_cancel.Dock = DockStyle.Fill;
-            button_cancel.Location = new Point(284, 3);
-            button_cancel.Margin = new Padding(2, 3, 2, 3);
-            button_cancel.Name = "button_cancel";
-            button_cancel.Size = new Size(76, 26);
-            button_cancel.TabIndex = 3;
-            button_cancel.Text = "取消";
-            button_cancel.UseVisualStyleBackColor = true;
-            button_cancel.Click += Button_cancel_Click;
-            // 
-            // button_apply
-            // 
-            button_apply.Dock = DockStyle.Fill;
-            button_apply.Location = new Point(364, 3);
-            button_apply.Margin = new Padding(2, 3, 2, 3);
-            button_apply.Name = "button_apply";
-            button_apply.Size = new Size(76, 26);
-            button_apply.TabIndex = 3;
-            button_apply.Text = "应用";
-            button_apply.UseVisualStyleBackColor = true;
-            button_apply.Click += Button_apply_Click;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(button_add, 0, 0);
-            tableLayoutPanel2.Controls.Add(button_m_down, 1, 2);
-            tableLayoutPanel2.Controls.Add(button_m_up, 0, 2);
-            tableLayoutPanel2.Controls.Add(button_copy, 0, 1);
-            tableLayoutPanel2.Controls.Add(button_remove, 1, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 292);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Size = new Size(185, 94);
-            tableLayoutPanel2.TabIndex = 1;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel2, 0, 1);
-            tableLayoutPanel4.Controls.Add(groupBox1, 1, 0);
-            tableLayoutPanel4.Controls.Add(tableLayoutPanel5, 1, 1);
-            tableLayoutPanel4.Controls.Add(panel1, 0, 0);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(10, 10);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(639, 389);
-            tableLayoutPanel4.TabIndex = 5;
-            // 
-            // tableLayoutPanel5
-            // 
-            tableLayoutPanel5.ColumnCount = 1;
-            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
-            tableLayoutPanel5.Controls.Add(tableLayoutPanel7, 0, 2);
-            tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(194, 292);
-            tableLayoutPanel5.Name = "tableLayoutPanel5";
-            tableLayoutPanel5.RowCount = 3;
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel5.Size = new Size(442, 94);
-            tableLayoutPanel5.TabIndex = 3;
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Controls.Add(s_local_port, 1, 0);
-            tableLayoutPanel6.Controls.Add(label9, 0, 0);
-            tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(0, 0);
-            tableLayoutPanel6.Margin = new Padding(0);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 1;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel6.Size = new Size(442, 31);
-            tableLayoutPanel6.TabIndex = 0;
-            // 
             // tableLayoutPanel7
             // 
             tableLayoutPanel7.ColumnCount = 4;
@@ -548,7 +502,6 @@
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel7.Controls.Add(button_save, 1, 0);
             tableLayoutPanel7.Controls.Add(button_apply, 3, 0);
             tableLayoutPanel7.Controls.Add(button_cancel, 2, 0);
             tableLayoutPanel7.Controls.Add(label_save_msg, 0, 0);
@@ -559,14 +512,38 @@
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
-            tableLayoutPanel7.Size = new Size(442, 32);
+            tableLayoutPanel7.Size = new Size(344, 32);
             tableLayoutPanel7.TabIndex = 1;
+            // 
+            // button_apply
+            // 
+            button_apply.Dock = DockStyle.Fill;
+            button_apply.Location = new Point(266, 3);
+            button_apply.Margin = new Padding(2, 3, 2, 3);
+            button_apply.Name = "button_apply";
+            button_apply.Size = new Size(76, 26);
+            button_apply.TabIndex = 3;
+            button_apply.Text = "保存";
+            button_apply.UseVisualStyleBackColor = true;
+            button_apply.Click += Button_apply_Click;
+            // 
+            // button_cancel
+            // 
+            button_cancel.Dock = DockStyle.Fill;
+            button_cancel.Location = new Point(186, 3);
+            button_cancel.Margin = new Padding(2, 3, 2, 3);
+            button_cancel.Name = "button_cancel";
+            button_cancel.Size = new Size(76, 26);
+            button_cancel.TabIndex = 3;
+            button_cancel.Text = "最小化";
+            button_cancel.UseVisualStyleBackColor = true;
+            button_cancel.Click += Button_cancel_Click;
             // 
             // label_save_msg
             // 
             label_save_msg.Anchor = AnchorStyles.Right;
             label_save_msg.AutoSize = true;
-            label_save_msg.Location = new Point(199, 7);
+            label_save_msg.Location = new Point(101, 7);
             label_save_msg.Name = "label_save_msg";
             label_save_msg.Size = new Size(0, 17);
             label_save_msg.TabIndex = 4;
@@ -575,13 +552,62 @@
             // 
             panel1.BackColor = SystemColors.Window;
             panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(listBox1);
+            panel1.Controls.Add(dataGridView1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(2, 2);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(187, 285);
+            panel1.Size = new Size(352, 285);
             panel1.TabIndex = 4;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2, Column4 });
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(348, 281);
+            dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column1.DataPropertyName = "server";
+            Column1.HeaderText = "地址";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "状态";
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Width = 60;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "延迟";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Width = 60;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "操作";
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Text = "连接";
+            Column4.UseColumnTextForLinkValue = true;
+            Column4.Width = 60;
             // 
             // notifyIcon1
             // 
@@ -687,7 +713,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(659, 409);
+            ClientSize = new Size(726, 409);
             Controls.Add(tableLayoutPanel4);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2, 3, 2, 3);
@@ -710,13 +736,12 @@
             tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel7.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ListBox listBox1;
         private Button button_add;
         private Button button_remove;
         private Button button_copy;
@@ -738,22 +763,13 @@
         private Label label1;
         private TextBox s_server_timout;
         private Label label8;
-        private Label label9;
-        private TextBox s_local_port;
-        private Button button_save;
-        private Button button_cancel;
-        private Button button_apply;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
-        private TableLayoutPanel tableLayoutPanel5;
-        private TableLayoutPanel tableLayoutPanel6;
-        private TableLayoutPanel tableLayoutPanel7;
         private NotifyIcon notifyIcon1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem 打开配置界面ToolStripMenuItem;
         private ToolStripMenuItem 退出ToolStripMenuItem;
-        private Label label_save_msg;
         private ComboBox s_server_method;
         private TableLayoutPanel tableLayoutPanel1;
         private Button button_switch_pwd;
@@ -769,5 +785,18 @@
         private ToolStripMenuItem 无ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem 剪贴板导入ss链接ToolStripMenuItem;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewLinkColumn Column4;
+        private TableLayoutPanel tableLayoutPanel5;
+        private TableLayoutPanel tableLayoutPanel6;
+        private TextBox s_local_port;
+        private Label label9;
+        private TableLayoutPanel tableLayoutPanel7;
+        private Button button_apply;
+        private Button button_cancel;
+        private Label label_save_msg;
     }
 }

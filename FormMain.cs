@@ -9,6 +9,7 @@ using System.Diagnostics;
 using static System.Windows.Forms.AxHost;
 using System.IO;
 using System.Windows.Forms;
+using System;
 
 namespace SS_Rust_Win_Gui
 {
@@ -83,6 +84,16 @@ namespace SS_Rust_Win_Gui
             File.WriteAllText(ConfigDatafile, JsonConvert.SerializeObject(configData, Newtonsoft.Json.Formatting.Indented));
             SyncContextMenu(configData);
         }
+        private int GetDataSelectNum()
+        {
+            int selectNum = -1;
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                selectNum = dataGridView1.SelectedRows[0].Index;
+            }
+            return selectNum;
+        }
+
 
         private void SyncContextMenu(ConfigData configData)
         {
@@ -134,6 +145,7 @@ namespace SS_Rust_Win_Gui
 
         private async void Main_Load(object sender, EventArgs e)
         {
+
             //MessageBox.Show(ApplicationPath);
             string[] mt = await GetMethodsAsync();
             s_server_method.Items.AddRange(mt);
@@ -149,7 +161,7 @@ namespace SS_Rust_Win_Gui
 
 
 
-            listBox1.DisplayMember = "server";
+            // listBox1.DisplayMember = "server";
 
             if (configData.servers.Count > 0)
             {
@@ -157,17 +169,65 @@ namespace SS_Rust_Win_Gui
                 {
                     configData.active_num = 0;
                 }
-                listBox1.SelectedIndexChanged -= new EventHandler(ListBox1_SelectedIndexChanged);
-                listBox1.DataSource = configData.servers;
-                listBox1.SelectedIndex = configData.active_num;
-                ListBox1_SelectedIndexChanged();
-                listBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
+                dataGridView1.SelectionChanged -= new EventHandler(DataList_SelectedIndexChanged);
+
+
+                dataGridView1.DataSource = configData.servers;
+
+                dataGridView1.Rows[configData.active_num].Selected = true;
+                DataList_SelectedIndexChanged();
+                dataGridView1.SelectionChanged += new EventHandler(DataList_SelectedIndexChanged);
+                dataGridView1.CellClick += dataGridView1_CellClick;
 
             }
             s_local_port.Text = configData.local_port;
 
-        }
 
+
+            //configData.active_num = selectNum;
+            //SaveConfig(configData);
+        }
+        private async void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "操作")
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Cells[0].Value = "";
+                    if (row.Index == e.RowIndex)
+                    {
+                        row.Cells[0].Value = "已连接";
+                    }
+                }
+
+                configData.active_num = e.RowIndex;
+                SaveConfig(configData);
+                ConnectServer(configData.servers[e.RowIndex]);
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "延迟")
+            {
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "...";
+                ConfigServer configServer = configData.servers[e.RowIndex];
+
+                new Thread(() =>
+                {
+                    try
+                    {
+                        string delay = TcpUtils.TestDelay(configServer.server, int.Parse(configServer.server_port));
+                        dataGridView1.BeginInvoke(() =>
+                        {
+                            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = delay;
+                        });
+                    }
+                    catch (Exception ex) {
+                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "Error";
+                    }
+                   
+                }).Start();
+
+
+            }
+        }
 
         private async Task<string[]> GetMethodsAsync()
         {
@@ -194,43 +254,40 @@ namespace SS_Rust_Win_Gui
             }
 
         }
-        private void ListBox1_SelectedIndexChanged(object? sender, EventArgs e)
+        private void ConnectServer(ConfigServer configServer)
         {
-            ListBox1_SelectedIndexChanged();
+            _ = StartSocks5ProxyAsync(configServer);
+            label_save_msg.Text = configServer.server + " 服务已连接！";
+        }
+
+        private void DataList_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            DataList_SelectedIndexChanged();
         }
 
         int preConfigServerIndex = -1;
-        private void ListBox1_SelectedIndexChanged()
+        private void DataList_SelectedIndexChanged()
         {
-            if (listBox1.SelectedIndex == -1)
+            int selectNum = GetDataSelectNum();
+            if (selectNum == -1)
             {
                 return;
             }
-            if (preConfigServerIndex == listBox1.SelectedIndex)
+            if (preConfigServerIndex == selectNum)
             {
                 return;
             }
             else
             {
-                preConfigServerIndex = listBox1.SelectedIndex;
+                preConfigServerIndex = selectNum;
             }
 
 
-            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex);
+            ConfigServer configServer = configData.servers.ElementAt(selectNum);
             if (configServer is not null)
             {
-                if (!configServer.server.Equals("newConfig.com"))
-                {
-                    LoadServerConfig(configServer);
-                    _ = StartSocks5ProxyAsync(configServer);
-                    configData.active_num = listBox1.SelectedIndex;
-                    SaveConfig(configData);
-                    label_save_msg.Text = configServer.server + " 服务已连接！";
-                }
-                else
-                {
-                    LoadServerConfig(configServer);
-                }
+                LoadServerConfig(configServer);
+
             }
         }
 
@@ -369,14 +426,13 @@ namespace SS_Rust_Win_Gui
 
         private void SaveBtnFunc()
         {
-
+            int selectNum = GetDataSelectNum();
             ConfigServer configServer = GetServerConfig();
-            configData.servers.ElementAt(listBox1.SelectedIndex).SetVal(configServer);
+            configData.servers.ElementAt(selectNum).SetVal(configServer);
             configData.local_port = s_local_port.Text;
-            configData.active_num = listBox1.SelectedIndex;
+            configData.active_num = selectNum;
             SaveConfig(configData);
             label_save_msg.Text = "配置文件保存成功！";
-            _ = StartSocks5ProxyAsync(configServer);
         }
 
         private void Button_cancel_Click(object sender, EventArgs e)
@@ -412,57 +468,70 @@ namespace SS_Rust_Win_Gui
             ConfigServer configServer = new();
             configData.servers.Add(configServer);
 
-            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+            dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
+
+            //listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
 
         private void Button_remove_Click(object sender, EventArgs e)
         {
-            var idnex = listBox1.SelectedIndex;
-            configData.servers.RemoveAt(idnex);
-            listBox1.SelectedIndex = idnex >= 1 ? idnex - 1 : 0;
-            SaveConfig(configData);
+
+            int selectNum = GetDataSelectNum();
+            if (selectNum > -1)
+            {
+                configData.servers.RemoveAt(selectNum);
+                dataGridView1.Rows[selectNum >= 1 ? selectNum - 1 : 0].Selected = true;
+                SaveConfig(configData);
+            }
+
+
+
         }
 
         private void Button_copy_Click(object sender, EventArgs e)
         {
-            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex).Clone();
+            int selectNum = GetDataSelectNum();
+
+            ConfigServer configServer = configData.servers.ElementAt(selectNum).Clone();
             configData.servers.Add(configServer);
-            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+            //listBox1.SelectedIndex = listBox1.Items.Count - 1;
+            dataGridView1.Rows[dataGridView1.RowCount - 1].Selected = true;
         }
 
         private void Button_m_up_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == 0)
+            int selectNum = GetDataSelectNum();
+
+            if (selectNum < 1)
             {
                 return;
             }
-            int index = listBox1.SelectedIndex;
-            listBox1.SelectedIndexChanged -= new EventHandler(ListBox1_SelectedIndexChanged);
-            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex);
-            configData.servers.RemoveAt(index);
-            configData.servers.Insert(index - 1, configServer);
-            listBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
-            listBox1.SelectedIndex = index - 1;
+
+            dataGridView1.SelectionChanged -= new EventHandler(DataList_SelectedIndexChanged);
+            ConfigServer configServer = configData.servers.ElementAt(selectNum);
+            configData.servers.RemoveAt(selectNum);
+            configData.servers.Insert(selectNum - 1, configServer);
+            dataGridView1.SelectionChanged += new EventHandler(DataList_SelectedIndexChanged);
+            dataGridView1.Rows[selectNum - 1].Selected = true;
             SaveConfig(configData);
         }
 
         private void Button_m_down_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex >= configData.servers.Count - 1)
+            int selectNum = GetDataSelectNum();
+            if (selectNum >= configData.servers.Count - 1)
             {
                 return;
             }
-            int index = listBox1.SelectedIndex;
-            listBox1.SelectedIndexChanged -= new EventHandler(ListBox1_SelectedIndexChanged);
-            ConfigServer configServer = configData.servers.ElementAt(listBox1.SelectedIndex);
-            configData.servers.RemoveAt(index);
-            configData.servers.Insert(index + 1, configServer);
-            listBox1.SelectedIndexChanged += new EventHandler(ListBox1_SelectedIndexChanged);
-            listBox1.SelectedIndex = index + 1;
+
+            dataGridView1.SelectionChanged -= new EventHandler(DataList_SelectedIndexChanged);
+            ConfigServer configServer = configData.servers.ElementAt(selectNum);
+            configData.servers.RemoveAt(selectNum);
+            configData.servers.Insert(selectNum + 1, configServer);
+            dataGridView1.SelectionChanged += new EventHandler(DataList_SelectedIndexChanged);
+            dataGridView1.Rows[selectNum + 1].Selected = true;
             SaveConfig(configData);
-
-
-
         }
         bool showPW = false;
         private void Button_switch_pwd_Click(object sender, EventArgs e)
@@ -549,10 +618,11 @@ namespace SS_Rust_Win_Gui
                         notifyIcon1.ShowBalloonTip(0, "导入完成", "本次导入" + res.Count + "个服务器！", ToolTipIcon.Info);
                         return;
                     }
-                    catch (Exception) { 
+                    catch (Exception)
+                    {
 
                     }
-                    
+
                 }
             }
             notifyIcon1.ShowBalloonTip(0, "导入失败", "请检查剪贴板内容！", ToolTipIcon.Error);
