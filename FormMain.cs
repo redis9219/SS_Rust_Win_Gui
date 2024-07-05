@@ -183,9 +183,18 @@ namespace SS_Rust_Win_Gui
             s_local_port.Text = configData.local_port;
 
 
-
-            //configData.active_num = selectNum;
-            //SaveConfig(configData);
+            if (configData.active_num > -1) {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Cells[0].Value = "";
+                    if (row.Index == configData.active_num)
+                    {
+                        row.Cells[0].Value = "已连接";
+                    }
+                }
+                ConnectServer(configData.servers[configData.active_num]);
+            }
+            
         }
         private async void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
@@ -219,10 +228,11 @@ namespace SS_Rust_Win_Gui
                             dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = delay;
                         });
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "Error";
                     }
-                   
+
                 }).Start();
 
 
@@ -349,13 +359,6 @@ namespace SS_Rust_Win_Gui
             cts = new();
             if (File.Exists(RustAppPath))
             {
-
-                Process[] ps = Process.GetProcessesByName("sslocal");
-                foreach (Process p in ps)
-                {
-                    p.Kill();
-                }
-
                 notifyIcon1.ShowBalloonTip(3, "sslocal 服务已启动", configServer.remark + "\r\nSOCKS5://" + configData.local_address + ":" + configData.local_port, ToolTipIcon.Info);
                 var cmd = Cli.Wrap(RustAppPath)
                     .WithValidation(CommandResultValidation.None)
@@ -458,9 +461,11 @@ namespace SS_Rust_Win_Gui
             }
         }
 
-        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void 退出ToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
+            await Cli.Wrap("taskkill").WithArguments("/f /t /im sslocal.exe").WithValidation(CommandResultValidation.None).ExecuteAsync();
             this.Close();
+            Application.Exit();
         }
 
         private void Button_add_Click(object sender, EventArgs e)

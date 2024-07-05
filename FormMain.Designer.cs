@@ -497,13 +497,13 @@
             // 
             // tableLayoutPanel7
             // 
-            tableLayoutPanel7.ColumnCount = 4;
+            tableLayoutPanel7.ColumnCount = 3;
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
             tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel7.Controls.Add(button_apply, 3, 0);
-            tableLayoutPanel7.Controls.Add(button_cancel, 2, 0);
+            tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel7.Controls.Add(button_apply, 2, 0);
+            tableLayoutPanel7.Controls.Add(button_cancel, 1, 0);
             tableLayoutPanel7.Controls.Add(label_save_msg, 0, 0);
             tableLayoutPanel7.Dock = DockStyle.Fill;
             tableLayoutPanel7.Location = new Point(0, 62);
@@ -511,7 +511,6 @@
             tableLayoutPanel7.Name = "tableLayoutPanel7";
             tableLayoutPanel7.RowCount = 1;
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
             tableLayoutPanel7.Size = new Size(344, 32);
             tableLayoutPanel7.TabIndex = 1;
             // 
@@ -543,7 +542,7 @@
             // 
             label_save_msg.Anchor = AnchorStyles.Right;
             label_save_msg.AutoSize = true;
-            label_save_msg.Location = new Point(101, 7);
+            label_save_msg.Location = new Point(181, 7);
             label_save_msg.Name = "label_save_msg";
             label_save_msg.Size = new Size(0, 17);
             label_save_msg.TabIndex = 4;
@@ -707,7 +706,7 @@
             退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
             退出ToolStripMenuItem.Size = new Size(185, 22);
             退出ToolStripMenuItem.Text = "退出";
-            退出ToolStripMenuItem.Click += 退出ToolStripMenuItem_Click;
+            退出ToolStripMenuItem.Click += 退出ToolStripMenuItem_ClickAsync;
             // 
             // FormMain
             // 
