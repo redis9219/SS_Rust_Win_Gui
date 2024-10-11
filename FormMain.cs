@@ -177,7 +177,7 @@ namespace SS_Rust_Win_Gui
                 dataGridView1.Rows[configData.active_num].Selected = true;
                 DataList_SelectedIndexChanged();
                 dataGridView1.SelectionChanged += new EventHandler(DataList_SelectedIndexChanged);
-                dataGridView1.CellClick += dataGridView1_CellClick;
+                dataGridView1.CellClick += DataGridView1_CellClick;
 
             }
             s_local_port.Text = configData.local_port;
@@ -196,7 +196,7 @@ namespace SS_Rust_Win_Gui
             }
             
         }
-        private async void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].HeaderText == "操作")
             {
