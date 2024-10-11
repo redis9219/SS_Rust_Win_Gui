@@ -6,7 +6,7 @@ namespace SS_Rust_Win_Gui
     internal static class Program
     {
 
-        public static readonly string LogFileName = "output.log";
+        public static readonly string LogFileName = AppDomain.CurrentDomain.BaseDirectory+ "output.log";
 
         [STAThread]
         static void Main(string[] args)
